@@ -1,0 +1,45 @@
+id: https://github.com/odu-cga-cubesat/manuscript-schema/tree/main/manuscript-schema.yaml
+name: manuscript-schema
+prefixes:
+  linkml: https://w3id.org/linkml/
+imports:
+  - linkml:types
+default_range: string
+
+classes:
+  SharedAuthor:
+    slots:
+      - full_name
+      - footnote
+  Author:
+    attributes:
+      author:
+        multivalued: true
+        inlined_as_list: true
+        range: SharedAuthor
+      affiliation:
+  Section:
+    attributes:
+      title:
+        description: String used for section name
+      content:
+        description: String containing LaTeX syntax, s.a., for a table of acronyms
+  Manuscript:
+    tree_root: true
+    attributes:
+      title:
+      authors:
+        multivalued: true
+        inlined_as_list: true
+        range: Author
+      abstract:
+      sections:
+        multivalued: true
+        inlined_as_list: true
+        range: Section
+      bibtex:
+        description: name of bib file containing references
+
+slots:
+  full_name:
+  footnote:
